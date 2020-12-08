@@ -86,3 +86,8 @@ dist
 
 # Service worker
 sw.*
+
+# Storybook
+!.storybook
+.nuxt-storybook
+storybook-static

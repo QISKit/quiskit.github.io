@@ -1,0 +1,4 @@
+# Storybook
+**/*.stories.js
+**/*.stories.mdx
+**/*.stories.ts

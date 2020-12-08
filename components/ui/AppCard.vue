@@ -34,12 +34,39 @@
 import Vue from 'vue'
 import { Component, Prop } from 'vue-property-decorator'
 
+/**
+ * Card component.
+ * 
+ * A card is a flexible content container that includes an image, a title and a
+ * description.
+ * 
+ * Optionally, a card can also include a list of tags and a CTA button.
+ */
 @Component
 export default class AppCard extends Vue {
+  /**
+   * Card image's URL.
+   */
   @Prop(String) image!: string
+
+  /**
+   * Card title.
+   */
   @Prop(String) title!: string
+
+  /**
+   * List of tags.
+   */
   @Prop(Array) tags!: string[]
+
+  /**
+   * CTA button's target URL.
+   */
   @Prop(String) to!: string
+
+  /**
+   * CTA button's label.
+   */
   @Prop(String) ctaLabel!: string
 
   ctaLink = {

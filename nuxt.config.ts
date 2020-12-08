@@ -137,6 +137,19 @@ const config: NuxtConfig = {
   ** Build configuration
   */
   build: {
+    babel: {
+      /**
+       * core-js@3 required for Storybook integration with Nuxt < 2.14.0.
+       * https://storybook.nuxtjs.org/setup
+       * Required dependencies: @babel/runtime-corejs3, core-js@3
+       */
+      presets () {
+        return [
+          ['@nuxt/babel-preset-app', { corejs: { version: 3 } }]
+        ]
+      }
+    },
+
     /*
     ** You can extend webpack config here
     */
