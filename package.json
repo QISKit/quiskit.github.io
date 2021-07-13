@@ -48,7 +48,7 @@
     "@nuxtjs/eslint-config-typescript": "^6.0.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
-    "@types/airtable": "^0.8.1",
+    "@types/airtable": "^0.10.1",
     "@types/jest": "^26.0.23",
     "@types/lodash": "^4.14.168",
     "@types/markdown-it": "^12.0.1",
