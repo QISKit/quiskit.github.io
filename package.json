@@ -32,7 +32,7 @@
     "carbon-components": "^10.34.0",
     "cross-env": "^7.0.3",
     "lodash": "^4.17.21",
-    "nuxt": "^2.14.12",
+    "nuxt": "^2.15.7",
     "nuxt-lazy-load": "^1.2.6",
     "ts-node": "^9.1.1",
     "vue-class-component": "^7.2.6",
