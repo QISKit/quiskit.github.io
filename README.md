@@ -65,7 +65,7 @@ git branch -u upstream/main main
 - [🏭 Content Generation](#-content-generation)
 - [🎚️Other environment flags](#️other-environment-flags)
   - [Enable analytics](#enable-analytics)
-- [🧐 Folder Structure](#-folder-structure)
+- [🧐 Directory structure](#-directory-structure)
 - [✏️ How to Contribute](#️-how-to-contribute)
 - [🛠 Available Scripts](#-available-scripts)
 - [🗓 Open backlog](#-open-backlog)
@@ -80,13 +80,13 @@ Qiskit.org is a pre-rendering SPA using [Nuxt.js](https://nuxtjs.org/).
 
 A **pre-rendering SPA** is a single page application that generates a static markup (HTML) at build time. The user, when entering the web, receives HTML (as if it were a static web) but in the meantime, JS files belonging to the SPA are loaded “hydrating” the web until it's completely dynamic.
 
-**[Nuxt.js](https://nuxtjs.org/)** is the biggest framework on top of **[Vue.js](https://vuejs.org/)** to generate *universal* SPAs. Universal or "isomorphic" apps can be pre-rendering or SSR. Since so far we don't need server functions, our website it's just pre-rendering.
+**[Nuxt.js](https://nuxtjs.org/)** is the biggest framework on top of **[Vue.js](https://vuejs.org/)** to generate *universal* SPAs. Universal or "isomorphic" apps can be pre-rendering or SSR. Since so far we don't need server functions, our website is just pre-rendering.
 
 We create and run unit tests using [Jest](https://jestjs.io/), ensure avoiding syntax errors using [ESLint](https://eslint.org/) and automate all these previous tools and deployment using [Travis](https://travis-ci.org/).
 
 With this technology we want to **achieve**:
 - Separation between content edition and development concerns.
-- Use a component based framework like Vue that allow us to reuse part of the UI code in different parts of the application.
+- Use a component-based framework like Vue that allow us to reuse part of the UI code in different parts of the application.
 - Fast initial page load.
 - Index content on Search Engines.
 - Test JS unit functions.
@@ -115,7 +115,7 @@ With this technology we want to **achieve**:
     ```
 ## 🏭 Content Generation
 
-qiskit.org integrates with the tools used by the IBM Quantum Community Team and generate some content based on 3rd party APIs such as Airtable. Part of this content is prefetched during building time. While developing, it is disabled by default. If you want enable content generation, you must set the environment variable `GENERATE_CONTENT`. For instance:
+qiskit.org integrates with the tools used by the IBM Quantum Community Team and generates some content based on 3rd party APIs such as Airtable. Part of this content is prefetched during building time. While developing, it is disabled by default. If you want enable content generation, you must set the environment variable `GENERATE_CONTENT`. For instance:
 
 ```shell
 GENERATE_CONTENT=1 npm run dev
@@ -135,59 +135,85 @@ In production, the user can authorize us to gather analytics so we can identify
 trends and improve our user experience. In development, analytics are disabled
 by default. To enable, set the `ENABLE_ANALYTICS` environment variable.
 
-## 🧐 Folder Structure
+## 🧐 Directory structure
 
-    .
-    ├── app
-    ├── assets
-    ├── components
-    ├── constants
-    ├── content
-    ├── deploy
-    ├── hooks
-    ├── layouts
-    ├── mixins
-    ├── new-content
-    ├── pages
-    ├── plugins
-    ├── static
-    ├── store
-    ├── tests
-    ├── nuxt.config.js
-    ... other third-parties configuration files like ESLint, Jest or Travis
+    qiskit.org/
+    ├─ app/
+    ├─ assets/
+    ├─ components/
+    ├─ constants/
+    ├─ content/
+    ├─ deploy/
+    ├─ hooks/
+    ├─ layouts/
+    ├─ mixins/
+    ├─ new-content/
+    ├─ pages/
+    ├─ plugins/
+    ├─ static/
+    ├─ store/
+    ├─ tests/
+    ├─ types/
+    ├─ nuxt.config.js
+    ├─ ... other third-parties configuration files like ESLint, Jest or Travis
 
-1.  **`/app`**: contains `router.ScrollBehavior.js` controlling the behavior of
-the scroll when navigating.
+-  **`app/`**: Global scripts.
 
-3.  **`/assets`**: Images and assets for the project. You can find more information at [Nuxt's assets directory documentation](https://nuxtjs.org/guide/assets/)
+    Currently only contains `router.ScrollBehavior.js` for controlling the behavior of the scroll when navigating.
 
-4.  **`/components`**: Vue components for the project. You can find more information at [Nuxt's components directory documentation](https://nuxtjs.org/guide/directory-structure#the-components-directory)
+-  **`assets/`**: Un-compiled Sass files.
 
-5.  **`/constants`**: Constants shared through the whole project.
+    More information: [NuxtJS documentation on the _assets_ directory](https://nuxtjs.org/docs/2.x/directory-structure/assets)
 
-6.  **`/content`**: Markdown files, website's editable content. They are divided in folders by sections.
+-  **`components/`**: Vue.js components.
 
-7.  **`/deploy`**: Deploy configuration.
+    More information: [NuxtJS documentation on the _components_ directory](https://nuxtjs.org/docs/2.x/directory-structure/components)
 
-8.  **`/hooks`**: Hook functions shared through the whole project.
+-  **`constants/`**: Shared constants.
 
-9.  **`/layouts`**: You can find information at [Nuxt's layout directory documentation](https://nuxtjs.org/guide/directory-structure#the-layouts-directory)
+-  **`content/`**: Content Markdown and JSON files included via the [`generate` property](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-generate/#routes).
 
-10. **`/mixins`**: Mixin functions shared through the whole project.
+    The files are organized in folders matching the website's information architecture.
 
-11. **`/new-content`**: This directory includes newer content that is used in various parts of the qiskit.org website, leveraging the [nuxt/content](https://content.nuxtjs.org/) module, along with standard markdown syntax.
+-  **`deploy/`**: Deployment configuration.
 
-12. **`/pages`**: This is a starting point because if you want to know what is the website structure, it's the same as this folder's structure. Nuxt reads all the `.vue` files inside this directory and creates the application router based on it. You can find information at [Nuxt's pages directory documentation](https://nuxtjs.org/guide/directory-structure#the-pages-directory). All `.vue` pages prefixed by an underscore are [dynamic routes](https://nuxtjs.org/guide/routing/#dynamic-routes) and we use them to create different pages based on the same template. We also use [nuxt-link](https://nuxtjs.org/guide/routing/) to keep the user inside our webapp router.
+-  **`hooks/`**: Shared hook functions.
 
-13. **`/plugins`**: You can find information at [Nuxt's plugins directory documentation](https://nuxtjs.org/guide/directory-structure#the-plugins-directory)
+-  **`layouts/`**: Nuxt layout components.
 
-14. **`/statics`**: You can find information at [Nuxt's statics directory documentation](https://nuxtjs.org/guide/directory-structure#the-static-directory)
+    More information: [NuxtJS documentation on the _layouts_ directory](https://nuxtjs.org/docs/2.x/directory-structure/layouts)
 
-15. **`/tests`**: Unit tests made with Jest
+- **`mixins/`**: Shared Vue.js mixins.
 
-16. **`/types`**: Additional types for non-typed libraries or global definitions.
+- **`new-content/`**: Content Markdown files included via `@nuxtjs/content`.
 
-17. **`nuxt-config.js`**: This is the main configuration file for a Nuxt site. You can find information at [Nuxt's config documentation](https://nuxtjs.org/guide/configuration)
+    This directory would usually be named `content`, but that name was already in use in our project.
+
+    More information: [NuxtJS documentation on the _content_ directory](https://nuxtjs.org/docs/2.x/directory-structure/content)
+
+- **`pages/`**: The base application views and routes.
+
+    More information: [NuxtJS documentation on the _pages_ directory](https://nuxtjs.org/docs/2.x/directory-structure/pages)
+
+- **`plugins/`**: JavaScript plugins that run before instantiating the root Vue.js application.
+
+    More information: [NuxtJS documentation on the _pages_ directory](https://nuxtjs.org/docs/2.x/directory-structure/plugins)
+
+- **`static/`**: Files that will be automatically served by Nuxt and will be accessible through the project root URL.
+
+    More information: [NuxtJS documentation on the _static_ directory](https://nuxtjs.org/docs/2.x/directory-structure/static)
+
+- **`store/`**: Vuex store files.
+
+    More information: [NuxtJS documentation on the _store_ directory](https://nuxtjs.org/docs/2.x/directory-structure/store)
+
+- **`tests/`**: Jest unit tests.
+
+- **`types/`**: Additional types for non-typed libraries or global definitions.
+
+- **`nuxt.config.js`**: Main NuxtJS configuration.
+
+    More information: [NuxtJS documentation on the _nuxt.config_ file](https://nuxtjs.org/docs/2.x/directory-structure/nuxt-config)
 
 ## ✏️ How to Contribute
 
@@ -205,7 +231,7 @@ Run unit tests made with [Jest](https://jestjs.io/):
   npm run test
 ```
 
-Build static version ready for production, output will generated inside a new folder called `dist`:
+Build static version ready for production, output will be generated inside a new folder called `dist`:
 ```shell
   npm run build
 ```
